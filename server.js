@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const primes = require('./primes.js');
+const power = require('./power.js');
 const fs = require('fs');
 
 app.get('/', function(req, res){
@@ -15,6 +16,12 @@ app.get('/', function(req, res){
 
 app.get('/isPrime/:number', function(req, res){
     res.status(200).send(primes.isPrime(req.params.number));    
+})
+
+app.get('/power/:power/:number', function(req, res){
+  answer = power.power(req.params.power,req.params.number)
+
+  res.status(200).send(answer.toString());    
 })
 
 exports.stop = function(){
